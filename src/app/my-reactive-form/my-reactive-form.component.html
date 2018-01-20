@@ -1,0 +1,33 @@
+<mat-card>
+  <mat-card-content>
+    <form class="example-form" [formGroup]="customerForm">
+      <mat-form-field class="example-full-width">
+        <input type="text" matInput formControlName="firstName" placeholder="FirstName">
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <input type="text" matInput formControlName="lastName" placeholder="Last Name">
+      </mat-form-field>
+
+      <mat-card>
+        <button type="submit" mat-raised-button color="primary" (click)="addMobile()">
+          Add More Number </button>
+        <br>
+        <br>
+        <div formArrayName="mobiles" *ngFor="let leg of mobiles.controls; let i= index;">
+          <div [formGroupName]="i">
+            <mat-form-field class="example-full-width">
+              <input type="number" matInput placeholder="Mobile Number" formControlName="number">
+            </mat-form-field>
+            <button type="button" mat-raised-button color="accent" (click)="removeMobile(i)"> Remove</button>
+          </div>
+
+        </div>
+      </mat-card>
+
+      <button type="button" mat-raised-button color="primary" (click)="save()" [disabled]="!customerForm.valid">
+        Save</button>
+
+    </form>
+  </mat-card-content>
+</mat-card>
